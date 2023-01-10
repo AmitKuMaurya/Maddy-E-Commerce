@@ -2,6 +2,7 @@ import "./Header.css";
 
 import { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Header() {
 	const navRef = useRef();
@@ -15,12 +16,12 @@ function Header() {
 			<header className="header_n">
 			<h2>E-<span style={{color:"black",fontWeight:"normal"}}  >Commerce</span></h2>
 			<nav ref={navRef}  >
-				{/* <a href="#">Home</a>
-				<a href="#about">About</a>
-				<a href="#techStack">Skills</a>
-				<a href="#stats">Github Stats</a>
-				<a href="#project">Projects</a>
-				<a href="#contact">Contact Me</a> */}
+				<Link to="/">Home</Link>
+				<Link to="/products">Products</Link>
+				<Link href="#techStack"></Link>
+				<Link href="#stats"></Link>
+				<Link href="#project"></Link>
+				<Link href="#contact"></Link>
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>

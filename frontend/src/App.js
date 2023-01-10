@@ -1,17 +1,22 @@
 
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import HomePage from './Pages/HomePage';
 import DetailedProduct from './Pages/DetailedProduct';
 import AllProduct from './components/AllProduct';
+import Header from './components/Header';
+import Main from './components/Main';
+// import Search from './components/Search';
 
 function App() {
   return (
     <>
+    <Header/>
       <Routes>
-        <Route path='/' element={<HomePage/>} />
+        <Route path='/' element={<Main/>} />
         <Route path='/product/:id' element={<DetailedProduct/>} />
         <Route path='/products' element={<AllProduct/>} />
+        {/* <Route path='/products/:keyword' element={<AllProduct/>} /> */}
+        {/* <Route path='/search' element={<Search/>} /> */}
       </Routes>
     </>
   );

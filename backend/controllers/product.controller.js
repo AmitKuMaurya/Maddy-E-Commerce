@@ -2,6 +2,7 @@ const { ProductModel } = require("../models/product.model");
 const ErrorHandler = require("../utils/error.handler");
 const asyncAwaitErr = require("../middlewares/async.await.error");
 const ApiFeatures = require("../utils/api.features");
+
 // Create product only -- Admin can access
 exports.createProduct = asyncAwaitErr(async (req, res, next) => {
   req.body.user = req.user.id;
@@ -16,7 +17,7 @@ exports.createProduct = asyncAwaitErr(async (req, res, next) => {
 
 exports.getAllProducts = asyncAwaitErr(async (req, res,next) => {
   // return next(new ErrorHandler("got some err", 500));
-  const resultPerPage = 12;
+  const resultPerPage = 6;
   const productsCount = await ProductModel.countDocuments();
 
   const apiFeatures = new ApiFeatures(ProductModel.find(), req.query)
@@ -28,7 +29,8 @@ exports.getAllProducts = asyncAwaitErr(async (req, res,next) => {
   res.status(200).json({
     success: true,
     products,
-    productsCount
+    productsCount,
+    resultPerPage
   });
 });
 
