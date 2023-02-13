@@ -18,7 +18,7 @@ function Header() {
 			<nav ref={navRef}  >
 				<Link to="/">Home</Link>
 				<Link to="/products">Products</Link>
-				<Link href="#techStack"></Link>
+				<Link to="/login">Login</Link>
 				<Link href="#stats"></Link>
 				<Link href="#project"></Link>
 				<Link href="#contact"></Link>

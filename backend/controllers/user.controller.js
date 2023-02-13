@@ -1,18 +1,18 @@
 const asyncAwaitErr = require("../middlewares/async.await.error");
-// const { UserModel } = require("../models/user.model");
 const { UserModel } = require("../models/user.model");
-const { sendToken } = require("../middlewares/jwt.token");
+const {sendToken} = require("../middlewares/jwt.token");
 const sendMail = require("../utils/send.email");
 const crypto = require("crypto");
 const ErrorHandler = require("../utils/error.handler");
+const cloudinary = require("cloudinary");
 
 // Register a User
 exports.registerUser = asyncAwaitErr(async (req, res, next) => {
-  // const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-  //   folder: "avatars",
-  //   width: 150,
-  //   crop: "scale",
-  // });
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
 
   const { name, email, password } = req.body;
 
@@ -21,12 +21,13 @@ exports.registerUser = asyncAwaitErr(async (req, res, next) => {
     email,
     password,
     avatar: {
-      public_id: "myCloud.public_id",
-      url: "myCloud.secure_url",
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
     },
   });
 
   sendToken(user, 201, res);
+  // console.log(req);
 });
 
 // Login User
@@ -51,7 +52,7 @@ exports.loginUser = asyncAwaitErr(async (req, res, next) => {
     return next(new ErrorHandler("Invalid email or password", 401));
   }
 
-  sendToken(user, 200, res);
+  sendToken(user, 201, res);
 });
 
 // Logout User

@@ -3,47 +3,45 @@ import "./Main.css";
 // import Product from "./Product";
 import TopTitle from "./TopTitle";
 import { useSelector, useDispatch } from 'react-redux';
-import { getProducts } from '../Redux/Actions/product.action';
+import { getProducts } from '../Redux/product/Actions/product.action';
 import Loading from './Loading skeleton/Loading'
-import { useAlert } from "react-alert";
+// import { useAlert } from "react-alert";
 import ProductCard from './ProductCard';
 
 function Main() {
     const dispatch = useDispatch();
-    const alert = useAlert();
+    // const alert = useAlert();
     const { loading, error, products } = useSelector((state) => state.products)
 
     useEffect(() => {
-        if (error) {
-            return alert.error(error);
-          }
+        // if (error) {
+        //     return alert.error(error);
+        //   }
         dispatch(getProducts());
-    }, [dispatch,error,alert]);
+    }, [dispatch, error, alert]);
 
-    console.log(products);
+    // console.log(products);
 
     return (
         <>
-        {loading ? <Loading/> :     <>
+            {loading ? <Loading /> : <>
 
-<TopTitle title={"Landing Page"} />
+                <TopTitle title={"Landing Page"} />
 
-<div className='banner'>
+                <div className='banner'>
 
+                    <a href="#container">
 
+                    </a>
+                </div>
 
-    <a href="#container">
+                <h2 className='homeHeading'>Best Products oF Year</h2>
 
-    </a>
-</div>
+                <div className='container' id='container'>
+                    {products && products.map(product => <ProductCard product={product} />)}
 
-<h2 className='homeHeading'>Best Products oF Year</h2>
-
-<div className='container' id='container'>
-    { products && products.map(product => <ProductCard product={product}/>)}
-   
-</div>
-</>}
+                </div>
+            </>}
         </>
     )
 }

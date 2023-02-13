@@ -3,15 +3,15 @@ import Carousel from "react-material-ui-carousel";
 import "./DetailedProduct.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getProductDetails } from "../Redux/Actions/product.action";
+import { getProductDetails } from "../Redux/product/Actions/product.action";
 import { useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "../components/ReviewCard";
 import Loading from "../components/Loading skeleton/Loading";
-import {useAlert} from "react-alert"
+// import {useAlert} from "react-alert"
 function DetailedProduct() {
   const dispatch = useDispatch();
-  const alert = useAlert()
+  // const alert = useAlert()
   const { id } = useParams();
   console.log(id);
   const { product, loading, error } = useSelector(
@@ -20,11 +20,11 @@ function DetailedProduct() {
 
   useEffect(() => {
 
-    if(error){
-      return alert.error(error);
-    }
+    // if(error){
+    //   return alert.error(error);
+    // }
     dispatch(getProductDetails(id));
-  }, [dispatch,id,error,alert]);
+  }, [dispatch,id,error]);
 
   const options = {
     edit : false,
@@ -71,7 +71,7 @@ function DetailedProduct() {
                 <input type="number" value="1" />
                 <button>+</button>
               </div>
-              <button>Addd to Cart</button>
+              <button>Add to Cart</button>
             </div>
             <p>
               Status :

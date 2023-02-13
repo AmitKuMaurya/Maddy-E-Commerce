@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux"
-import { getProducts } from '../Redux/Actions/product.action';
+import { getProducts } from '../Redux/product/Actions/product.action';
 import Loading from './Loading skeleton/Loading';
 import ProductCard from './ProductCard';
 import Pagination from "react-js-pagination";
 import Slider from "@material-ui/core/Slider/Slider"
 import Typography from "@material-ui/core/Typography/Typography";
 import "./AllProduct.css";
-import {useAlert} from "react-alert"
+// import {useAlert} from "react-alert"
 
 const categories = [
   "Laptop",
@@ -24,7 +24,7 @@ const categories = [
 function AllProduct(){
 
   const dispatch = useDispatch();
-  const alert = useAlert();
+  // const alert = useAlert();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 10000]);
@@ -43,9 +43,9 @@ function AllProduct(){
   }
 
   useEffect(() => {
-    if(error){
-      alert.error(error);
-    }
+    // if(error){
+    //   alert.error(error);
+    // }
     dispatch(getProducts(currentPage,price,category,ratings));
   }, [dispatch,currentPage,price,category,ratings,alert,error]);
 

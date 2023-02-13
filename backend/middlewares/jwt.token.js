@@ -1,5 +1,6 @@
 const sendToken = (user,statusCode,res) =>{
     const token = user.getJWTToken();
+    // console.log(token);
     
     // logic for storing token in cookie
 
@@ -12,9 +13,10 @@ const sendToken = (user,statusCode,res) =>{
 
     res.status(statusCode).cookie("token",token,options).json({
         success : true,
-        user,
         token,
+        user
     })
+    
 }
 
 module.exports = {sendToken};
