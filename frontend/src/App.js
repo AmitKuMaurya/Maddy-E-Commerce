@@ -13,7 +13,8 @@ import UserOptions from "./components/utility/userOptions";
 // import { persistUser } from './Redux/user/user.action';
 import { useDispatch, useSelector } from "react-redux";
 import ProtectedRoute from "./components/PrivateRoute/ProtectedRoute";
-import UpdateUserProfile from "./components/user/UpdateUserProfile";
+// import UpdateUserProfile from "./components/user/UpdateUserProfile";
+// import UpdateUserPassword from "./components/user/UpdateUserPassword";
 function App() {
   // const dispatch = useDispatch();
   const { isAuth, user } = useSelector((state) => state.user);
@@ -40,14 +41,24 @@ function App() {
           }
         />
 
-        <Route
+        {/* <Route
           path="/me/update"
           element={
             <ProtectedRoute>
               <UpdateUserProfile />
             </ProtectedRoute>
           }
-        />
+        /> */}
+
+        {/* <Route
+          path="/password/update"
+          element={
+            <ProtectedRoute>
+              <UpdateUserPassword />
+            </ProtectedRoute>
+          }
+        /> */}
+        
         {/* <Route path='/products/:keyword' element={<AllProduct/>} /> */}
         {/* <Route path='/search' element={<Search/>} /> */}
       </Routes>

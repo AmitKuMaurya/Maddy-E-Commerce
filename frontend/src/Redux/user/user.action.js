@@ -59,21 +59,42 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const updateProfile = (userData) => async (dispatch) => {
-  try {
-    dispatch({ type: types.UPDATE_PROFILE_REQUEST });
+// export const updateProfile = (userData) => async (dispatch) => {
+//   try {
+//     dispatch({ type: types.UPDATE_PROFILE_REQUEST });
 
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
+//     const config = { headers: { "Content-Type": "multipart/form-data" } };
+//     console.log(userData);
+//     const { data } = await axios.put(`http://localhost:8080/api/v1/me/update`, userData, config);
 
-    const { data } = await axios.put(`http://localhost:8080/api/v1/me/update`, userData, config);
+//      dispatch({ type: types.UPDATE_PROFILE_SUCCESS, payload: data.success });
+//      console.log(data);
+//      console.log(data.success);
+//   } catch (error) {
+//     dispatch({
+//       type: types.UPDATE_PROFILE_FAIL,
+//       payload: error.response.data.message,
+//     });
+//   }
+// };
 
-     dispatch({ type: types.UPDATE_PROFILE_SUCCESS, payload: data.success });
-     console.log(data);
-     console.log(data.success);
-  } catch (error) {
-    dispatch({
-      type: types.UPDATE_PROFILE_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
+// export const updatePassword = (passwords) => async (dispatch) => {
+//   try {
+//     dispatch({ type: types.UPDATE_PASSWORD_REQUEST });
+
+//     const config = { headers: { "Content-Type": "application/json" } };
+
+//     const { data } = await axios.put(
+//       `http://localhost:8080/api/v1/password/update`,
+//       passwords,
+//       config
+//     );
+
+//     dispatch({ type: types.UPDATE_PASSWORD_SUCCESS, payload: data.success });
+//   } catch (error) {
+//     dispatch({
+//       type: types.UPDATE_PASSWORD_FAIL,
+//       payload: error.response.data.message,
+//     });
+//   }
+// };

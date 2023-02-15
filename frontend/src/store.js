@@ -15,7 +15,8 @@ const rootReducer = combineReducers({
 
 const persistConfig = {
   key : 'persist-user',
-  storage
+  storage : storage,
+  blacklist: ['productDetailsReducer']
 }
 
 const persistedReducer = persistReducer(persistConfig,rootReducer);
@@ -26,6 +27,7 @@ const middleware = [thunk];
 
 const store = legacy_createStore(
   persistedReducer,
+  // productDetailsReducer,
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );
