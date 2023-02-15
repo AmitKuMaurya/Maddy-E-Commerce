@@ -12,7 +12,7 @@ function ProductCard({ product }) {
     value: product.ratings,
     ishalf: true
   }
-  
+
   return (
     <>
       <Link className='productCard' to={`product/${product._id}`}>

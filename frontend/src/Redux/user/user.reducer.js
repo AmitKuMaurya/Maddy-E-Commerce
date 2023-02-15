@@ -1,23 +1,20 @@
-import { loadData, saveData } from "../../components/utility/SetCookie";
+// import { loadData, saveData } from "../../components/utility/SetCookie";
 import * as types from "./user.action.types";
-const token = loadData("token");
+// const token = loadData("token");
 
 export const userReducer = (state = { user: {} }, action) => {
   switch (action.type) {
     case types.USER_LOGIN_LOADING:
     case types.USER_REGISTER_LOADING:
-    case types.USER_PERSIST_LOADING:
       return { loading: true, isAuth: false };
 
     case types.USER_LOGIN_SUCCESS:
     case types.USER_REGISTER_SUCCESS:
-    case types.USER_PERSIST_SUCCESS:
-      saveData("token",action.payload)
       return {
         ...state,
         loading: false,
         isAuth: true,
-        jwtToken: action.payload,
+        user: action.payload,
       };
 
     case types.USER_LOGIN_FAILED:
@@ -25,16 +22,87 @@ export const userReducer = (state = { user: {} }, action) => {
       return {
         loading: false,
         isAuth: false,
-        jwtToken: null,
+        user : null,
         error: action.payload,
       };
 
-    case types.USER_PERSIST_FAILED:
+    // case types.USER_PERSIST_FAILED:
+    //   return {
+    //     loading: false,
+    //     isAuth: false,
+    //     user : null,
+    //     error: action.payload,
+    //   };
+
+    case types.LOGOUT_SUCCESS:
       return {
         loading: false,
+        user: null,
         isAuth: false,
-        jwtToken: null,
+      };
+
+      case types.LOGOUT_FAIL:
+      return {
+        ...state,
+        loading: false,
         error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+
+export const profileReducer = (state = {}, action) => {
+  switch (action.type) {
+    case types.UPDATE_PROFILE_REQUEST:
+    // case types.UPDATE_PASSWORD_REQUEST:
+    // case types.UPDATE_USER_REQUEST:
+    // case types.DELETE_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case types.UPDATE_PROFILE_SUCCESS:
+    // case types.UPDATE_PASSWORD_SUCCESS:
+    // case types.UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isUpdated: action.payload,
+      };
+
+    // case types.DELETE_USER_SUCCESS:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     isDeleted: action.payload.success,
+    //     message: action.payload.message,
+    //   };
+
+    case types.UPDATE_PROFILE_FAIL:
+    // case types.UPDATE_PASSWORD_FAIL:
+    // case types.UPDATE_USER_FAIL:
+    // case types.DELETE_USER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case types.UPDATE_PROFILE_RESET:
+    case types.UPDATE_PASSWORD_RESET:
+    case types.UPDATE_USER_RESET:
+      return {
+        ...state,
+        isUpdated: false,
+      };
+
+    case types.DELETE_USER_RESET:
+      return {
+        ...state,
+        isDeleted: false,
       };
 
     default:

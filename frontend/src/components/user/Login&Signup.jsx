@@ -15,7 +15,7 @@ function LoginAndSignup() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { error, loading, isAuth } = useSelector((state) => state.user);
-  // console.log(jwtToken)
+  // console.log(isAuth)
 
   const loginTab = useRef(null);
   const registerTab = useRef(null);
@@ -44,7 +44,6 @@ function LoginAndSignup() {
     e.preventDefault();
 
     const myForm = new FormData();
-
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("password", password);
@@ -68,12 +67,13 @@ function LoginAndSignup() {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
+
   useEffect(()=>{
 
     const token = localStorage.getItem("token");
-    console.log(token);
-    if(isAuth || token) {
-      navigate("/")
+    // console.log(token);
+    if(isAuth && token) {
+      navigate("/account");
     }
   })
 

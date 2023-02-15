@@ -62,6 +62,8 @@ exports.logout = asyncAwaitErr(async (req, res, next) => {
     httpOnly: true,
   });
 
+  // localStorage.clear();
+
   res.status(200).json({
     success: true,
     message: "Logged Out",
@@ -183,6 +185,26 @@ exports.upadteUserProfile = asyncAwaitErr(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
   };
+
+  if (req.body.avatar !== "") {
+    const user = await UserModel.findById(req.user.id);
+
+    const imageId = user.avatar.public_id;
+
+    await cloudinary.v2.uploader.destroy(imageId);
+
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+      folder: "avatars",
+      width: 150,
+      crop: "scale",
+    });
+
+    newUserData.avatar = {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    };
+  }
+
 
   const user = await UserModel.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,

@@ -6,8 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 // import {CookiesProvider} from "react-cookie"
 import {Provider} from "react-redux";
-import store from './store';
-import AlertTemplate from "react-alert-template-basic";
+import {PersistGate} from "redux-persist/integration/react"
+import store,{persistor} from './store';
+
+// import AlertTemplate from "react-alert-template-basic";
 // import { positions, transitions, Provider as AlertProvider } from "react-alert";
 
 
@@ -21,17 +23,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // };
 
 root.render(
-  // <React.StrictMode>
     <BrowserRouter>
     <Provider store={store}>
-      {/* <CookiesProvider> */}
+  <PersistGate persistor={persistor}>
       {/* <AlertProvider template={AlertTemplate} {...options}> */}
           <App />
       {/* </AlertProvider> */}
-      {/* </CookiesProvider> */}
+  </PersistGate>
     </Provider>
-    </BrowserRouter>
-  // </React.StrictMode>
+    </BrowserRouter> 
 );
 
 reportWebVitals();
