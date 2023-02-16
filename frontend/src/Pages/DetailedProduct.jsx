@@ -8,9 +8,11 @@ import { useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "../components/ReviewCard";
 import Loading from "../components/Loading skeleton/Loading";
+import { addItemsToCart } from "../Redux/cart/action";
 // import {useAlert} from "react-alert"
 function DetailedProduct() {
   const dispatch = useDispatch();
+  const params = useParams();
   // const alert = useAlert()
   const { id } = useParams();
   console.log(id);
@@ -46,6 +48,11 @@ function DetailedProduct() {
     if(1 >= quantity) return
     const qty = quantity - 1;
     setQuantity(qty);
+  }
+
+  const addToCartHandler = () => {
+    dispatch(addItemsToCart(params.id,quantity))
+    alert("Item added to Cart");
   }
 
   return (
@@ -84,7 +91,7 @@ function DetailedProduct() {
                 <span>{quantity}</span>
                 <button onClick={increaseQuantity}>+</button>
               </div>
-              <button>Add to Cart</button>
+              <button onClick={addToCartHandler}>Add to Cart</button>
             </div>
             <p>
               Status :

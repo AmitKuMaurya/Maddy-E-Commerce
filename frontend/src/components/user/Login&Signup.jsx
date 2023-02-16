@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link,useNavigate } from "react-router-dom";
+import { Link,useLocation,useNavigate } from "react-router-dom";
 import "./LoginAndSignup.css";
 import { login, register } from "../../Redux/user/user.action";
 import Loading from "../Loading skeleton/Loading";
@@ -14,6 +14,7 @@ function LoginAndSignup() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { error, loading, isAuth } = useSelector((state) => state.user);
   // console.log(isAuth)
 
@@ -68,14 +69,15 @@ function LoginAndSignup() {
     }
   };
 
-  useEffect(()=>{
+  const redirect = location.search ? location.search.split("=")[1] : "/account";
 
+  useEffect(()=>{
     const token = localStorage.getItem("token");
     // console.log(token);
     if(isAuth && token) {
-      navigate("/account");
+      navigate(redirect);
     }
-  })
+  },[dispatch,error,navigate,isAuth,redirect])
 
 
   const swichTab = (e, tab) => {

@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProtectedRoute from "./components/PrivateRoute/ProtectedRoute";
 import UserForgotPassword from "./components/user/UserForgotPassword";
 import UserResetPassword from "./components/user/UserResetPassword";
+import Cart from "./cart/Cart";
 // import UpdateUserProfile from "./components/user/UpdateUserProfile";
 // import UpdateUserPassword from "./components/user/UpdateUserPassword";
 function App() {
@@ -54,6 +55,10 @@ function App() {
           element={
               <UserResetPassword />
           }
+        />
+
+        <Route
+          path="/cart" element={<Cart />}
         />
 
         {/* <Route

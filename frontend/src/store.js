@@ -5,13 +5,15 @@ import { productDetailsReducer, productReducer } from "./Redux/product/Reducers/
 import { forgotPasswordReducer, profileReducer, userReducer } from "./Redux/user/user.reducer";
 import { persistReducer,persistStore} from "redux-persist"
 import storage from "redux-persist/lib/storage";
+import { cartReducer } from "./Redux/cart/reducer";
 
 const rootReducer = combineReducers({
   products : productReducer,
   productDetails : productDetailsReducer,
   user : userReducer,
   // profile : profileReducer,
-  forgotPassword : forgotPasswordReducer
+  forgotPassword : forgotPasswordReducer,
+  cart : cartReducer
 });
 
 const persistConfig = {
@@ -22,7 +24,13 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig,rootReducer);
 
-let initialState = {};
+let initialState = {
+  cart : {
+    cartItems : localStorage.getItem("cartItems")
+     ? JSON.parse(localStorage.getItem("cartItems"))
+      : []
+  }
+};
 
 const middleware = [thunk];
 
