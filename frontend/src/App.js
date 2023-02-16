@@ -13,6 +13,8 @@ import UserOptions from "./components/utility/userOptions";
 // import { persistUser } from './Redux/user/user.action';
 import { useDispatch, useSelector } from "react-redux";
 import ProtectedRoute from "./components/PrivateRoute/ProtectedRoute";
+import UserForgotPassword from "./components/user/UserForgotPassword";
+import UserResetPassword from "./components/user/UserResetPassword";
 // import UpdateUserProfile from "./components/user/UpdateUserProfile";
 // import UpdateUserPassword from "./components/user/UpdateUserPassword";
 function App() {
@@ -38,6 +40,19 @@ function App() {
             <ProtectedRoute>
               <UserProfile />
             </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/password/forgot"
+          element={
+              <UserForgotPassword />
+          }
+        />
+        <Route
+          path="/password/reset/:token"
+          element={
+              <UserResetPassword />
           }
         />
 
