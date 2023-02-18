@@ -10,8 +10,10 @@ import CartItemCard from "./CartItemCard";
 const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isAuth , user } = useSelector((state) => state.user);
   const { cartItems } = useSelector((state) => state.cart);
-
+  console.log(user._id)
+  // console.log(cartItems[0].userId);
   const increaseQuantity = (id, quantity, stock) => {
     const newQty = quantity + 1;
     if (stock <= quantity) {
@@ -33,7 +35,11 @@ const Cart = () => {
   };
 
   const checkoutHandler = () => {
-    navigate("/login?redirect=shipping");
+    if(isAuth){
+        navigate("/shipping");
+    } else {
+        navigate("/login?redirect=shipping");
+    }
   };
 
   return (
@@ -57,16 +63,17 @@ const Cart = () => {
             {cartItems &&
               cartItems.map((item) => (
                 <div className="cartContainer" key={item.product.toString()}>
-                  <CartItemCard item={item} deleteCartItems={deleteCartItems} />
+                  <CartItemCard userId={user._id} item={item} deleteCartItems={deleteCartItems} />
                   <div className="cartInput">
                     <button
                       onClick={() =>
                         decreaseQuantity(item.product, item.quantity)
                       }
-                    >
+                      >
                       -
                     </button>
-                    <input type="number" value={item.quantity} readOnly />
+                    <span>{item.quantity}</span>
+                    {/* <input type="number" value={item.quantity} readOnly /> */}
                     <button
                       onClick={() =>
                         increaseQuantity(

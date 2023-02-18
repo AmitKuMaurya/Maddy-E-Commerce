@@ -15,10 +15,14 @@ function DetailedProduct() {
   const params = useParams();
   // const alert = useAlert()
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
   );
+  // console.log();
+
+  const {user} = useSelector((state)=> state.user);
+  // console.log(user._id);
 
   useEffect(() => {
 

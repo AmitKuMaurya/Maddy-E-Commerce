@@ -2,6 +2,7 @@ import { legacy_createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { productDetailsReducer, productReducer } from "./Redux/product/Reducers/product.reducer";
+import { newOrderReducer } from "./Redux/order/reducer.order";
 import { forgotPasswordReducer, profileReducer, userReducer } from "./Redux/user/user.reducer";
 import { persistReducer,persistStore} from "redux-persist"
 import storage from "redux-persist/lib/storage";
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   user : userReducer,
   // profile : profileReducer,
   forgotPassword : forgotPasswordReducer,
-  cart : cartReducer
+  cart : cartReducer,
+  Order : newOrderReducer
 });
 
 const persistConfig = {
@@ -28,7 +30,10 @@ let initialState = {
   cart : {
     cartItems : localStorage.getItem("cartItems")
      ? JSON.parse(localStorage.getItem("cartItems"))
-      : []
+      : [],
+      shippingInfo : localStorage.getItem("shippingInfo")
+       ? JSON.parse(localStorage.getItem("shippingInfo"))
+        : {}
   }
 };
 

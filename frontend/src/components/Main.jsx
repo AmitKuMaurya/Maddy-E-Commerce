@@ -38,7 +38,7 @@ function Main() {
                 <h2 className='homeHeading'>Best Products oF Year</h2>
 
                 <div className='container' id='container'>
-                    {products && products.map(product => <ProductCard product={product} />)}
+                    {products && products.map(product => <ProductCard key={product.name.toString()} product={product} />)}
 
                 </div>
             </>}

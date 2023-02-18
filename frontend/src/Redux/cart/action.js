@@ -1,7 +1,7 @@
 import * as types from "./action.types";
 import axios from "axios";
 
-export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
+export const addItemsToCart = (id,quantity) => async (dispatch, getState) => {
   const { data } = await axios.get(
     `http://localhost:8080/api/v1/product/${id}`
   );
@@ -9,6 +9,7 @@ export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
   dispatch({
     type: types.ADD_TO_CART,
     payload: {
+      // userId : _id,
       product: data.product._id,
       name: data.product.name,
       price: data.product.price,
@@ -31,11 +32,11 @@ export const removeItemsFromCart = (id) => async (dispatch, getState) => {
 };
 
 
-// export const saveShippingInfo = (data) => async (dispatch) => {
-//   dispatch({
-//     type: SAVE_SHIPPING_INFO,
-//     payload: data,
-//   });
+export const saveShippingInfo = (data) => async (dispatch) => {
+  dispatch({
+    type: types.SAVE_SHIPPING_INFO,
+    payload: data,
+  });
 
-//   localStorage.setItem("shippingInfo", JSON.stringify(data));
-// };
+  localStorage.setItem("shippingInfo", JSON.stringify(data));
+};

@@ -12,7 +12,7 @@ export const getProducts = ( currentPage = 1, price = [0, 10000], category, rati
           link = `http://localhost:8080/api/v1/products?page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`
         }
         const {data} = await axios.get(link);
-        console.log(data)
+        // console.log(data)
         dispatch({ type : Types.GET_PRODUCT_SUCCESS,
         payload:data
     }) 
