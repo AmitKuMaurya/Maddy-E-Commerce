@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   // profile : profileReducer,
   forgotPassword : forgotPasswordReducer,
   cart : cartReducer,
-  Order : newOrderReducer
+  newOrder : newOrderReducer
 });
 
 const persistConfig = {
@@ -41,7 +41,6 @@ const middleware = [thunk];
 
 const store = legacy_createStore(
   persistedReducer,
-  // productDetailsReducer,
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );

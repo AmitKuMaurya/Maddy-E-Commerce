@@ -19,11 +19,6 @@ export const newOrderReducer = (state = {}, action) => {
           loading: false,
           error: action.payload,
         };
-      case types.CLEAR_ERRORS:
-        return {
-          ...state,
-          error: null,
-        };
   
       default:
         return state;
@@ -48,11 +43,6 @@ export const newOrderReducer = (state = {}, action) => {
           loading: false,
           error: action.payload,
         };
-      case types.CLEAR_ERRORS:
-        return {
-          ...state,
-          error: null,
-        };
   
       default:
         return state;
@@ -76,11 +66,6 @@ export const newOrderReducer = (state = {}, action) => {
         return {
           loading: false,
           error: action.payload,
-        };
-      case types.CLEAR_ERRORS:
-        return {
-          ...state,
-          error: null,
         };
   
       default:
@@ -129,11 +114,6 @@ export const newOrderReducer = (state = {}, action) => {
           ...state,
           isDeleted: false,
         };
-      case types.CLEAR_ERRORS:
-        return {
-          ...state,
-          error: null,
-        };
   
       default:
         return state;
@@ -157,11 +137,6 @@ export const newOrderReducer = (state = {}, action) => {
         return {
           loading: false,
           error: action.payload,
-        };
-      case types.CLEAR_ERRORS:
-        return {
-          ...state,
-          error: null,
         };
   
       default:

@@ -10,6 +10,7 @@ mongoose.connect(process.env.MONGO_URL)
     console.log(err);
 })
 }
+// console.log(process.env.MONGO_URL);
 
 module.exports = {connectDB}
 

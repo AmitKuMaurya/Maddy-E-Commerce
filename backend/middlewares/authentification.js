@@ -5,9 +5,12 @@ const ErrorHandler = require("../utils/error.handler");
 const asyncAwaitErr = require("./async.await.error");
 
 exports.isAuthenticatedUser = asyncAwaitErr( async (req,res,next)=>{
-    const {token} = req.cookies;
+    // const {token} = req.cookies;
     // console.log(token)
-
+    const token = req.headers.authorization.split(" ")[1];
+    // if(!req.headers.authorization){
+    //     return res.send("Please login again");
+    // }
     if(!token){
         return next(new ErrorHandler("Plesae login with correct token to access this route", 401));
     }
