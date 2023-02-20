@@ -27,19 +27,29 @@ export const createNewOrder = (orderObj,token) => async (dispatch) => {
     console.log(error);
   }
 };
+
 // My Orders
-export const myOrders = () => async (dispatch) => {
+export const myOrders = (token) => async (dispatch) => {
   try {
     dispatch({ type: types.MY_ORDERS_REQUEST });
 
-    const { data } = await axios.get("http://localhost:8080/api/v1/orders/me");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        'authorization': `Bearer ${token}`
+      },
+    };
+    const { data } = await axios.get(`http://localhost:8080/api/v1/order/me`,config);
 
     dispatch({ type: types.MY_ORDERS_SUCCESS, payload: data.orders });
+    console.log(data);
+
   } catch (error) {
     dispatch({
       type: types.MY_ORDERS_FAIL,
       payload: error.response.data.message,
     });
+    console.log(error);
   }
 };
 
@@ -105,12 +115,20 @@ export const deleteOrder = (id) => async (dispatch) => {
 };
 
 // Get Order Details
-export const getOrderDetails = (id) => async (dispatch) => {
+export const getOrderDetails = (id,token) => async (dispatch) => {
   try {
     dispatch({ type: types.ORDER_DETAILS_REQUEST });
 
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        'authorization': `Bearer ${token}`
+      },
+    };
+
     const { data } = await axios.get(
-      `http://localhost:8080/api/v1/order/${id}`
+      `http://localhost:8080/api/v1/order/${id}`,
+      config
     );
 
     dispatch({ type: types.ORDER_DETAILS_SUCCESS, payload: data.order });

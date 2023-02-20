@@ -22,6 +22,8 @@ import ConfirmOrder from "./cart/ConfirmOrder";
 import NotFound from "./components/Loading skeleton/NotFound";
 import Payment from "./cart/Payment";
 import Success from "./cart/Success";
+import MyOrders from "./components/order/MyOrders";
+import OrderDetails from "./components/order/OrderDetails";
 // import UpdateUserProfile from "./components/user/UpdateUserProfile";
 // import UpdateUserPassword from "./components/user/UpdateUserPassword";
 function App() {
@@ -72,14 +74,7 @@ function App() {
           }
         />
 
-        <Route
-          path="/order/confirm"
-          element={
-            <ProtectedRoute>
-              <ConfirmOrder />
-            </ProtectedRoute>
-          }
-        />
+
 
         <Route path={"*"} element={<NotFound />} />
 
@@ -109,12 +104,39 @@ function App() {
           }
         />
 
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute>
+              <MyOrders />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/order/:id"
+          element={
+            <ProtectedRoute>
+              <OrderDetails />
+            </ProtectedRoute>
+          }
+        />
+
+          <Route
+            path="/order/confirm"
+            element={
+              <ProtectedRoute>
+                <ConfirmOrder />
+              </ProtectedRoute>
+            }
+          />
+          
         {/* <Route
           path="/me/update"
           element={
             <ProtectedRoute>
               <UpdateUserProfile />
-            </ProtectedRoute>
+              </ProtectedRoute>
           }
         /> */}
 
@@ -122,7 +144,7 @@ function App() {
           path="/password/update"
           element={
             <ProtectedRoute>
-              <UpdateUserPassword />
+            <UpdateUserPassword />
             </ProtectedRoute>
           }
         /> */}
