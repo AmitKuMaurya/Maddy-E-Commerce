@@ -12,7 +12,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const { isAuth , user } = useSelector((state) => state.user);
   const { cartItems } = useSelector((state) => state.cart);
-  console.log(user._id)
+  // console.log(user._id)
   // console.log(cartItems[0].userId);
   const increaseQuantity = (id, quantity, stock) => {
     const newQty = quantity + 1;
@@ -63,7 +63,8 @@ const Cart = () => {
             {cartItems &&
               cartItems.map((item) => (
                 <div className="cartContainer" key={item.product.toString()}>
-                  <CartItemCard userId={user._id} item={item} deleteCartItems={deleteCartItems} />
+                  {/* userId={user._id} */}
+                  <CartItemCard  item={item} deleteCartItems={deleteCartItems} />
                   <div className="cartInput">
                     <button
                       onClick={() =>

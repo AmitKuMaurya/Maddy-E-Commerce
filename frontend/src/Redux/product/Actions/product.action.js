@@ -24,6 +24,7 @@ export const getProducts = ( currentPage = 1, price = [0, 10000], category, rati
     }
 }
 
+
 export const getProductDetails = (id) => async (dispatch) => {
     try {
       dispatch({ type: Types.GET_PRODUCT_DETAILED_LOADING });
@@ -41,3 +42,90 @@ export const getProductDetails = (id) => async (dispatch) => {
       });
     }
   };
+
+// create any product which is done by Admin only
+  export const createNewProduct = (productData,token) => async (dispatch) => {
+    try {
+      dispatch({ type: Types.NEW_PRODUCT_REQUEST });
+  
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          'authorization': `Bearer ${token}`
+        },
+      };
+      console.log("token :",token);
+  
+      const { data } = await axios.post(
+        `http://localhost:8080/api/v1/admin/product/new`,
+        productData,
+        config
+      );
+  
+      dispatch({
+        type: Types.NEW_PRODUCT_SUCCESS,
+        payload: data.product,
+      });
+    } catch (error) {
+      dispatch({
+        type: Types.NEW_PRODUCT_FAIL,
+        payload: error.response.data.message,
+      });
+      console.log(error);
+    }
+  };
+
+  // Get All Products For Admin
+  export const getAdminProduct = (token) => async (dispatch) => {
+    try {
+      dispatch({ type: Types.ADMIN_PRODUCT_REQUEST });
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          'authorization': `Bearer ${token}`
+        },
+      };
+  
+      const { data } = await axios.get("http://localhost:8080/api/v1/admin/products",config);
+  
+      dispatch({
+        type: Types.ADMIN_PRODUCT_SUCCESS,
+        payload: data.products,
+      });
+    } catch (error) {
+      dispatch({
+        type: Types.ADMIN_PRODUCT_FAIL,
+        payload: error.response.data.message,
+      });
+      // console.log(error);
+    }
+  };
+
+  
+  // Delete Product by admin
+export const deleteProduct = (id,token) => async (dispatch) => {
+  try {
+    dispatch({ type: Types.DELETE_PRODUCT_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        'authorization': `Bearer ${token}`
+      },
+    };
+    
+    const { data } = await axios.delete(`http://localhost:8080/api/v1/admin/product/${id}`,config);
+
+    dispatch({
+      type: Types.DELETE_PRODUCT_SUCCESS,
+      payload: data.success,
+    });
+  } catch (error) {
+    dispatch({
+      type: Types.DELETE_PRODUCT_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// Update an product by admin.

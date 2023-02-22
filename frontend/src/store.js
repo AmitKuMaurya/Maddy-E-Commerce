@@ -1,7 +1,7 @@
 import { legacy_createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { productDetailsReducer, productReducer } from "./Redux/product/Reducers/product.reducer";
+import { newProductReducer, productDetailsReducer, productReducer, productUpdateAndDeleteReducer } from "./Redux/product/Reducers/product.reducer";
 import { myOrdersReducer, newOrderReducer, orderDetailsReducer } from "./Redux/order/reducer.order";
 import { forgotPasswordReducer, profileReducer, userReducer } from "./Redux/user/user.reducer";
 import { persistReducer,persistStore} from "redux-persist"
@@ -17,7 +17,9 @@ const rootReducer = combineReducers({
   cart : cartReducer,
   newOrder : newOrderReducer,
   myOrders : myOrdersReducer,
-  orderDetails : orderDetailsReducer
+  orderDetails : orderDetailsReducer,
+  newProduct : newProductReducer,
+  modifyProduct : productUpdateAndDeleteReducer
 });
 
 const persistConfig = {

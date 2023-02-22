@@ -24,11 +24,14 @@ import Payment from "./cart/Payment";
 import Success from "./cart/Success";
 import MyOrders from "./components/order/MyOrders";
 import OrderDetails from "./components/order/OrderDetails";
+import Dashboard from "./admin/Dashboard";
+import UnAuthorized from "./admin/UnAuthorized";
+import AllProductsAdmin from "./admin/AllProductsAdmin";
+import CreateProducts from "./admin/CreateProducts";
 // import UpdateUserProfile from "./components/user/UpdateUserProfile";
 // import UpdateUserPassword from "./components/user/UpdateUserPassword";
 function App() {
   const { isAuth, user } = useSelector((state) => state.user);
-
   return (
     <>
       <Header />
@@ -58,7 +61,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-
+{/* isAdmin={false} */}
         <Route path="/password/forgot" element={<UserForgotPassword />} />
 
         <Route path="/password/reset/:token" element={<UserResetPassword />} />
@@ -107,7 +110,7 @@ function App() {
         <Route
           path="/orders"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute >
               <MyOrders />
             </ProtectedRoute>
           }
@@ -116,7 +119,7 @@ function App() {
         <Route
           path="/order/:id"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute >
               <OrderDetails />
             </ProtectedRoute>
           }
@@ -127,6 +130,43 @@ function App() {
             element={
               <ProtectedRoute>
                 <ConfirmOrder />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute isAdmin={true} >
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/products"
+            element={
+              <ProtectedRoute isAdmin={true} >
+                <AllProductsAdmin />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* unauthorized route  */}
+          <Route
+            path="/unauthorized"
+            element={
+              <ProtectedRoute >
+                <UnAuthorized />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/product"
+            element={
+              <ProtectedRoute isAdmin={true} >
+                <CreateProducts />
               </ProtectedRoute>
             }
           />
