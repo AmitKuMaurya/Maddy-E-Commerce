@@ -64,9 +64,9 @@ const UpdateOrder = () => {
           ) : (
             <div
               className="confirmOrderPage"
-            //   style={{
-            //     display: order.orderStatus === "Delivered" ? "block" : "grid",
-            //   }}
+              style={{
+                display: order.orderStatus === "Delivered" ? "block" : "grid",
+              }}
             >
               <div>
                 <div className="confirmshippingArea">
@@ -165,7 +165,7 @@ const UpdateOrder = () => {
                     <AccountTreeIcon />
                     <select onChange={(e) => setStatus(e.target.value)}>
                       <option value="">Choose Category</option>
-                      {order.orderStatus === "Processing" && (
+                      {order.orderStatus === "processing" && (
                         <option value="Shipped">Shipped</option>
                       )}
 
