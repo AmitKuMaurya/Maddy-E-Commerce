@@ -6,10 +6,9 @@ const cloudinary = require("cloudinary");
 
 // Create product only -- Admin can access
 exports.createProduct = asyncAwaitErr(async (req, res, next) => {
-
   let images = [];
 
-  if (typeof (req.body.images) === "string") {
+  if (typeof req.body.images === "string") {
     images.push(req.body.images);
   } else {
     images = req.body.images;
@@ -21,7 +20,7 @@ exports.createProduct = asyncAwaitErr(async (req, res, next) => {
     const result = await cloudinary.v2.uploader.upload(images[i], {
       folder: "products",
       width: 300,
-      crop: "scale"
+      crop: "scale",
     });
 
     imagesLinks.push({
@@ -40,9 +39,9 @@ exports.createProduct = asyncAwaitErr(async (req, res, next) => {
 
 // All products accessable for everyone
 
-exports.getAllProducts = asyncAwaitErr(async (req, res,next) => {
+exports.getAllProducts = asyncAwaitErr(async (req, res, next) => {
   // return next(new ErrorHandler("got some err", 500));
-  const resultPerPage = 8;
+  const resultPerPage = 10;
   const productsCount = await ProductModel.countDocuments();
 
   const apiFeatures = new ApiFeatures(ProductModel.find(), req.query)
@@ -50,25 +49,24 @@ exports.getAllProducts = asyncAwaitErr(async (req, res,next) => {
     .filter()
     .pagination(resultPerPage);
   const products = await apiFeatures.query;
+  // console.log(products.length);
 
   res.status(200).json({
     success: true,
     products,
     productsCount,
-    resultPerPage
+    resultPerPage,
   });
 });
 
 // All products for (Admins).
 
-exports.getAdminProducts = asyncAwaitErr(async (req, res,next) => {
-  
-  
+exports.getAdminProducts = asyncAwaitErr(async (req, res, next) => {
   const products = await ProductModel.find();
 
   res.status(200).json({
     success: true,
-    products
+    products,
   });
 });
 
@@ -90,10 +88,41 @@ exports.getDetailedProduct = asyncAwaitErr(async (req, res, next) => {
 // update products
 
 exports.updateProduct = asyncAwaitErr(async (req, res, next) => {
-  let product = ProductModel.findById(req.params.id);
+  let product = await ProductModel.findById(req.params.id);
 
   if (!product) {
     return next(new ErrorHandler("Product not found", 404));
+  }
+
+  // Images Start Here
+  let images = [];
+
+  if (typeof req.body.images === "string") {
+    images.push(req.body.images);
+  } else {
+    images = req.body.images;
+  }
+  
+  if (images !== undefined) {
+    // Deleting Images From Cloudinary
+    for (let i = 0; i < product.images.length; i++) {
+      await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+    }
+
+    const imagesLinks = [];
+    
+    for (let i = 0; i < images.length; i++) {
+      const result = await cloudinary.v2.uploader.upload(images[i], {
+        folder: "products",
+      });
+      
+      imagesLinks.push({
+        public_id: result.public_id,
+        url: result.secure_url,
+      });
+    }
+    
+    req.body.images = imagesLinks;
   }
 
   product = await ProductModel.findByIdAndUpdate(req.params.id, req.body, {

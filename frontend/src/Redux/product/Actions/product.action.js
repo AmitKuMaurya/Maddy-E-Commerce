@@ -6,8 +6,12 @@ export const getProducts = ( currentPage = 1, price = [0, 10000], category, rati
     try{
         dispatch({ type : Types.GET_PRODUCT_LOADING});
 
-        let link =`http://localhost:8080/api/v1/products?page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
-        
+        let link =`http://localhost:8080/api/v1/products`;
+
+        // if(currentPage || price || ratings){
+        //   link = `http://localhost:8080/api/v1/products?page=${currentPage}&ratings[gte]=${ratings}&price[gte]=${price[0]}&price[lte]=${price[1]}`
+        // }
+        // ?
         if(category){
           link = `http://localhost:8080/api/v1/products?page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`
         }
@@ -40,6 +44,7 @@ export const getProductDetails = (id) => async (dispatch) => {
         type: Types.GET_PRODUCT_DETAILED_ERROR,
         payload: error.response.data.message,
       });
+      console.log(error)
     }
   };
 
@@ -129,3 +134,34 @@ export const deleteProduct = (id,token) => async (dispatch) => {
 };
 
 // Update an product by admin.
+
+
+export const updateProduct = (id,productData,token) => async (dispatch) => {
+  try {
+    dispatch({ type: Types.UPDATE_PRODUCT_REQUEST });
+
+    const config = {
+      headers: {
+      "Content-Type": "multipart/form-data", 
+      'authorization': `Bearer ${token}`
+      },
+    };
+
+    const { data } = await axios.put(
+      `http://localhost:8080/api/v1/admin/product/${id}`,
+      productData,
+      config
+    );
+
+    dispatch({
+      type: Types.UPDATE_PRODUCT_SUCCESS,
+      payload: data.success,
+    });
+  } catch (error) {
+    dispatch({
+      type: Types.UPDATE_PRODUCT_FAIL,
+      payload: error.response.data.message,
+    });
+    console.log(error);
+  }
+};

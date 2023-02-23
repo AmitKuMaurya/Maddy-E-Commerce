@@ -36,12 +36,12 @@ export const productReducer = (state = { products: [] }, action) => {
 export const productDetailsReducer = (state =  { product: {} } , action) => {
   switch (action.type) {
     case Types.GET_PRODUCT_DETAILED_LOADING:
-      return { loading: true, ...state };
+      return {  ...state,loading: true };
 
     case Types.GET_PRODUCT_DETAILED_SUCCESS:
       return {
-        product: action.payload,
         loading: false,
+        product: action.payload
       };
 
     case Types.GET_PRODUCT_DETAILED_ERROR:

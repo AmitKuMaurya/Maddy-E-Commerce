@@ -73,7 +73,7 @@ export const newOrderReducer = (state = {}, action) => {
     }
   };
   
-  export const orderReducer = (state = {}, action) => {
+  export const orderModifyReducer = (state = {}, action) => {
     switch (action.type) {
       case types.UPDATE_ORDER_REQUEST:
       case types.DELETE_ORDER_REQUEST:

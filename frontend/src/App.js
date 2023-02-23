@@ -28,6 +28,9 @@ import Dashboard from "./admin/Dashboard";
 import UnAuthorized from "./admin/UnAuthorized";
 import AllProductsAdmin from "./admin/AllProductsAdmin";
 import CreateProducts from "./admin/CreateProducts";
+import EditProduct from "./admin/EditProduct";
+import AllOrders from "./admin/AllOrders";
+import UpdateOrder from "./admin/UpdateOrder";
 // import UpdateUserProfile from "./components/user/UpdateUserProfile";
 // import UpdateUserPassword from "./components/user/UpdateUserPassword";
 function App() {
@@ -167,6 +170,33 @@ function App() {
             element={
               <ProtectedRoute isAdmin={true} >
                 <CreateProducts />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/product/:id"
+            element={
+              <ProtectedRoute isAdmin={true} >
+                <EditProduct />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/orders"
+            element={
+              <ProtectedRoute isAdmin={true} >
+                <AllOrders />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/order/:id"
+            element={
+              <ProtectedRoute isAdmin={true} >
+                <UpdateOrder />
               </ProtectedRoute>
             }
           />

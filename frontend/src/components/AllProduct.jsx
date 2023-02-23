@@ -15,9 +15,14 @@ const categories = [
   "grocery",
   "cloths",
   "Tops",
-  "Attire",
   "Camera",
   "SmartPhones",
+  "Suit",
+  "Book",
+  "Electronics",
+  "Shoes",
+  "Furniture",
+  "Music",
 ];
 
 
@@ -47,8 +52,8 @@ function AllProduct(){
     //   alert.error(error);
     // }
     dispatch(getProducts(currentPage,price,category,ratings));
-  }, [dispatch,currentPage,price,category,ratings,alert,error]);
-
+  }, [dispatch,currentPage,price,category,ratings,error]);
+  console.log(category);
   let count = filteredProductsCount;
 
   return (

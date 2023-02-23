@@ -84,7 +84,7 @@ function DetailedProduct() {
             <p>product # {product._id}</p>
           </div>
           <div className="detailsBlock-2">
-            <ReactStars {...options} />
+            <ReactStars key={product._id} {...options} />
             <span>({product.numOfReviews} Reviews)</span>
           </div>
           <div className="detailsBlock-3">

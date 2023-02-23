@@ -15,9 +15,7 @@ import { Button } from "@material-ui/core";
 
 const CreateProducts = () => {
   const dispatch = useDispatch();
-//   const alert = useAlert();
 const token = JSON.parse(localStorage.getItem("token"));
-// console.log(token);
 
   const { loading,product,error, success } = useSelector((state) => state.newProduct);
     console.log(product);
@@ -34,18 +32,17 @@ const token = JSON.parse(localStorage.getItem("token"));
 
   const categories = [
     "Laptop",
-    "Footwear",
-    "Bottom",
+    "grocery",
+    "cloths",
     "Tops",
-    "Attire",
     "Camera",
     "SmartPhones",
-    "Beauty",
-    "Books",
+    "Suit",
+    "Book",
+    "Electronics",
+    "Shoes",
     "Furniture",
     "Music",
-    "Electronics",
-    "Cloth"
   ];
 
   useEffect(() => {
