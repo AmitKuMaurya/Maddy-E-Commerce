@@ -56,57 +56,57 @@ export const userReducer = (state = { user: {} }, action) => {
 
 export const profileReducer = (state = {}, action) => {
   switch (action.type) {
-    // case types.UPDATE_PROFILE_REQUEST:
-    // case types.UPDATE_PASSWORD_REQUEST:
-    // case types.UPDATE_USER_REQUEST:
-    // case types.DELETE_USER_REQUEST:
-      // return {
-      //   ...state,
-      //   loading: true,
-      // };
-    // case types.UPDATE_PROFILE_SUCCESS:
-    // case types.UPDATE_PASSWORD_SUCCESS:
-    // case types.UPDATE_USER_SUCCESS:
-      // return {
-      //   ...state,
-      //   loading: false,
-      //   isUpdated: action.payload,
-      // };
+    case types.UPDATE_PROFILE_REQUEST:
+    case types.UPDATE_PASSWORD_REQUEST:
+    case types.UPDATE_USER_REQUEST:
+    case types.DELETE_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case types.UPDATE_PROFILE_SUCCESS:
+    case types.UPDATE_PASSWORD_SUCCESS:
+    case types.UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isUpdated: action.payload,
+      };
 
-    // case types.DELETE_USER_SUCCESS:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     isDeleted: action.payload.success,
-    //     message: action.payload.message,
-    //   };
+    case types.DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isDeleted: action.payload.success,
+        message: action.payload.message,
+      };
 
-    // case types.UPDATE_PROFILE_FAIL:
-    // case types.UPDATE_PASSWORD_FAIL:
-    // case types.UPDATE_USER_FAIL:
-    // case types.DELETE_USER_FAIL:
-      // return {
-      //   ...state,
-      //   loading: false,
-      //   error: action.payload,
-      // };
+    case types.UPDATE_PROFILE_FAIL:
+    case types.UPDATE_PASSWORD_FAIL:
+    case types.UPDATE_USER_FAIL:
+    case types.DELETE_USER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
 
-    // case types.UPDATE_PROFILE_RESET:
-    // case types.UPDATE_PASSWORD_RESET:
-    // case types.UPDATE_USER_RESET:
-    //   return {
-    //     ...state,
-    //     isUpdated: false,
-    //   };
+    case types.UPDATE_PROFILE_RESET:
+    case types.UPDATE_PASSWORD_RESET:
+    case types.UPDATE_USER_RESET:
+      return {
+        ...state,
+        isUpdated: false,
+      };
 
-    // case types.DELETE_USER_RESET:
-    //   return {
-    //     ...state,
-    //     isDeleted: false,
-    //   };
+    case types.DELETE_USER_RESET:
+      return {
+        ...state,
+        isDeleted: false,
+      };
 
-    // default:
-    //   return state;
+    default:
+      return state;
   }
 };
 
@@ -140,6 +140,58 @@ export const forgotPasswordReducer = (state = {}, action) => {
         loading: false,
         error: action.payload,
       };
+
+    default:
+      return state;
+  }
+};
+
+export const allUsersReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case types.ALL_USERS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case types.ALL_USERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        users: action.payload,
+      };
+
+    case types.ALL_USERS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const userDetailsReducer = (state = { user: {} }, action) => {
+  switch (action.type) {
+    case types.USER_DETAILS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case types.USER_DETAILS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        user: action.payload,
+      };
+
+    case types.USER_DETAILS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
 
     default:
       return state;

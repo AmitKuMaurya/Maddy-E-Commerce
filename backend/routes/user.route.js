@@ -32,9 +32,9 @@ userRouter.put("/password/update",isAuthenticatedUser,upadteUserPassword)
 
 userRouter.put("/me/update",isAuthenticatedUser,upadteUserProfile);
 
-userRouter.get("/admin/users",isAuthenticatedUser,isAuthurized("admin"),getAllUsers)
 
 // admins route
+userRouter.get("/admin/users",isAuthenticatedUser,isAuthurized("admin"),getAllUsers)
 
 userRouter.get("/admin/user/:id",isAuthenticatedUser,isAuthurized("admin"),getAUserOnAdminsProfile)
 

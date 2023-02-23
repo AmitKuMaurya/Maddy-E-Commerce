@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { newProductReducer, productDetailsReducer, productReducer, productUpdateAndDeleteReducer } from "./Redux/product/Reducers/product.reducer";
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderModifyReducer } from "./Redux/order/reducer.order";
-import { forgotPasswordReducer, profileReducer, userReducer } from "./Redux/user/user.reducer";
+import { allUsersReducer, forgotPasswordReducer, profileReducer, userReducer } from "./Redux/user/user.reducer";
 import { persistReducer,persistStore} from "redux-persist"
 import storage from "redux-persist/lib/storage";
 import { cartReducer } from "./Redux/cart/reducer";
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   products : productReducer,
   productDetails : productDetailsReducer,
   user : userReducer,
-  // profile : profileReducer,
+  profile : profileReducer,
   forgotPassword : forgotPasswordReducer,
   cart : cartReducer,
   newOrder : newOrderReducer,
@@ -21,7 +21,8 @@ const rootReducer = combineReducers({
   newProduct : newProductReducer,
   modifyProduct : productUpdateAndDeleteReducer,
   allOrders : allOrdersReducer,
-  modifyOrder : orderModifyReducer
+  modifyOrder : orderModifyReducer,
+  allUsers : allUsersReducer,
 });
 
 const persistConfig = {

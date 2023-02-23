@@ -31,6 +31,7 @@ import CreateProducts from "./admin/CreateProducts";
 import EditProduct from "./admin/EditProduct";
 import AllOrders from "./admin/AllOrders";
 import UpdateOrder from "./admin/UpdateOrder";
+import AllUsers from "./admin/AllUsers";
 // import UpdateUserProfile from "./components/user/UpdateUserProfile";
 // import UpdateUserPassword from "./components/user/UpdateUserPassword";
 function App() {
@@ -41,11 +42,6 @@ function App() {
 
       {isAuth ? <UserOptions user={user} /> : null}
 
-      {/* {stripeApiKey && (
-        <Elements stripe={stripePromise} options={options}>
-          <PaymentProcess/>
-        </Elements>
-      )} */}
 
       <Routes>
         <Route path="/" element={<Main />} />
@@ -197,6 +193,15 @@ function App() {
             element={
               <ProtectedRoute isAdmin={true} >
                 <UpdateOrder />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute isAdmin={true} >
+                <AllUsers />
               </ProtectedRoute>
             }
           />
