@@ -34,7 +34,7 @@ const UserForgotPassword = () => {
     if (message) {
       alert(message);
     }
-  }, [dispatch, error, alert, message]);
+  }, [dispatch, error, message]);
 
   return (
     <Fragment>

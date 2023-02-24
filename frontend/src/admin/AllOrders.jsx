@@ -44,7 +44,7 @@ const AllOrders = () => {
     }
 
     dispatch(getAllOrders(token));
-  }, [dispatch, error ,deleteError, isDeleted]);
+  }, [dispatch, error ,deleteError, isDeleted,token,navigate]);
 // deleteError, isDeleted
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },

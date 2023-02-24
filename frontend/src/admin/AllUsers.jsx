@@ -44,7 +44,7 @@ const AllUsers = () => {
     }
 
     dispatch(getAllUsers(token));
-  }, [dispatch, error, deleteError, navigate, isDeleted, message]);
+  }, [dispatch, error, deleteError, navigate, isDeleted, message,token]);
 
   const columns = [
     { field: "id", headerName: "User ID", minWidth: 180, flex: 0.8 },

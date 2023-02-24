@@ -21,7 +21,7 @@ function DetailedProduct() {
   );
   // console.log();
 
-  const {user} = useSelector((state)=> state.user);
+  // const {user} = useSelector((state)=> state.user);
   // console.log(user._id);
 
   useEffect(() => {

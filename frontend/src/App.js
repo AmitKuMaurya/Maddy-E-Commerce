@@ -6,13 +6,10 @@ import AllProduct from "./components/AllProduct";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import LoginAndSignup from "./components/user/Login&Signup";
-// import { useEffect } from 'react';
 // import Search from './components/Search';
-// import store from "./store";
 import UserProfile from "./components/user/UserProfile";
 import UserOptions from "./components/utility/userOptions";
-// import { persistUser } from './Redux/user/user.action';
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ProtectedRoute from "./components/PrivateRoute/ProtectedRoute";
 import UserForgotPassword from "./components/user/UserForgotPassword";
 import UserResetPassword from "./components/user/UserResetPassword";
@@ -43,7 +40,6 @@ function App() {
 
       {isAuth ? <UserOptions user={user} /> : null}
 
-
       <Routes>
         <Route path="/" element={<Main />} />
 
@@ -61,7 +57,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-{/* isAdmin={false} */}
+
         <Route path="/password/forgot" element={<UserForgotPassword />} />
 
         <Route path="/password/reset/:token" element={<UserResetPassword />} />
@@ -77,26 +73,16 @@ function App() {
           }
         />
 
-
-
         <Route path={"*"} element={<NotFound />} />
 
-        {/* <Route
-          component={
-            window.location.pathname === "/payment/process" ? null : <NotFound/>
+        <Route
+          path="/payment/process"
+          element={
+            <ProtectedRoute>
+              <Payment />
+            </ProtectedRoute>
           }
-        /> */}
-
-        {/* <Elements stripe={loadStripe(stripeApiKey)}> */}
-          <Route
-            path="/payment/process"
-            element={
-              <ProtectedRoute>
-                <Payment />
-              </ProtectedRoute>
-            }
-          />
-        {/* </Elements> */}
+        />
 
         <Route
           path="/success"
@@ -110,7 +96,7 @@ function App() {
         <Route
           path="/orders"
           element={
-            <ProtectedRoute >
+            <ProtectedRoute>
               <MyOrders />
             </ProtectedRoute>
           }
@@ -119,103 +105,102 @@ function App() {
         <Route
           path="/order/:id"
           element={
-            <ProtectedRoute >
+            <ProtectedRoute>
               <OrderDetails />
             </ProtectedRoute>
           }
         />
 
-          <Route
-            path="/order/confirm"
-            element={
-              <ProtectedRoute>
-                <ConfirmOrder />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/order/confirm"
+          element={
+            <ProtectedRoute>
+              <ConfirmOrder />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/admin/dashboard"
-            element={
-              <ProtectedRoute isAdmin={true} >
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/admin/products"
-            element={
-              <ProtectedRoute isAdmin={true} >
-                <AllProductsAdmin />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/admin/products"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <AllProductsAdmin />
+            </ProtectedRoute>
+          }
+        />
 
-          {/* unauthorized route  */}
-          <Route
-            path="/unauthorized"
-            element={
-              <ProtectedRoute >
-                <UnAuthorized />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/unauthorized"
+          element={
+            <ProtectedRoute>
+              <UnAuthorized />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/admin/product"
-            element={
-              <ProtectedRoute isAdmin={true} >
-                <CreateProducts />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/admin/product"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <CreateProducts />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/admin/product/:id"
-            element={
-              <ProtectedRoute isAdmin={true} >
-                <EditProduct />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/admin/product/:id"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <EditProduct />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/admin/orders"
-            element={
-              <ProtectedRoute isAdmin={true} >
-                <AllOrders />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/admin/orders"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <AllOrders />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/admin/order/:id"
-            element={
-              <ProtectedRoute isAdmin={true} >
-                <UpdateOrder />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/admin/order/:id"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <UpdateOrder />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/admin/users"
-            element={
-              <ProtectedRoute isAdmin={true} >
-                <AllUsers />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/admin/users"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <AllUsers />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/admin/user/:id"
-            element={
-              <ProtectedRoute isAdmin={true} >
-                <UpdateUser />
-              </ProtectedRoute>
-            }
-          />
-          
+        <Route
+          path="/admin/user/:id"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <UpdateUser />
+            </ProtectedRoute>
+          }
+        />
+
         {/* <Route
           path="/me/update"
           element={

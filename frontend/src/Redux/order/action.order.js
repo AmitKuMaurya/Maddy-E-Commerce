@@ -1,6 +1,6 @@
 import * as types from "./actionTypes.order";
 import axios from "axios";
-
+import { BASE_URL } from "../../index";
 export const createNewOrder = (orderObj,token) => async (dispatch) => {
   try {
     dispatch({ type: types.CREATE_ORDER_REQUEST });
@@ -12,7 +12,7 @@ export const createNewOrder = (orderObj,token) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      `http://localhost:8080/api/v1/order/new`,
+      `${BASE_URL}/order/new`,
       orderObj,
       config
     );
@@ -39,7 +39,7 @@ export const myOrders = (token) => async (dispatch) => {
         'authorization': `Bearer ${token}`
       },
     };
-    const { data } = await axios.get(`http://localhost:8080/api/v1/order/me`,config);
+    const { data } = await axios.get(`${BASE_URL}/order/me`,config);
 
     dispatch({ type: types.MY_ORDERS_SUCCESS, payload: data.orders });
     console.log(data);
@@ -66,7 +66,7 @@ export const getOrderDetails = (id,token) => async (dispatch) => {
     };
 
     const { data } = await axios.get(
-      `http://localhost:8080/api/v1/order/${id}`,
+      `${BASE_URL}/order/${id}`,
       config
     );
 
@@ -93,7 +93,7 @@ export const getAllOrders = (token) => async (dispatch) => {
     };
 
     const { data } = await axios.get(
-      "http://localhost:8080/api/v1/admin/orders",
+      `${BASE_URL}/admin/orders`,
       config
     );
 
@@ -118,7 +118,7 @@ export const updateOrder = (id, order,token) => async (dispatch) => {
       },
     };
     const { data } = await axios.put(
-      `http://localhost:8080/api/v1/admin/order/${id}`,
+      `${BASE_URL}/admin/order/${id}`,
       order,
       config
     );
@@ -145,7 +145,7 @@ export const deleteOrder = (id,token) => async (dispatch) => {
     };
 
     const { data } = await axios.delete(
-      `http://localhost:8080/api/v1/admin/order/${id}`,
+      `${BASE_URL}/admin/order/${id}`,
       config
     );
 

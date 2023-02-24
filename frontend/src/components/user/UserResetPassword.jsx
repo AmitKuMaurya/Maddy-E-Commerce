@@ -43,7 +43,7 @@ const UserResetPassword = () => {
 
       navigate("/login");
     }
-  }, [dispatch, error, alert, navigate, success]);
+  }, [dispatch, error, navigate, success]);
 
   return (
     <Fragment>

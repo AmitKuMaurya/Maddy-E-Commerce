@@ -1,19 +1,20 @@
 import * as Types from "../ActionTypes/product.action.types";
 import axios from "axios";
+import { BASE_URL } from "../../../index";
 
 // currentPage = 1,price=[0,10000],ratings=0
 export const getProducts = ( currentPage = 1, price = [0, 10000], category, ratings = 0) => async(dispatch) =>{
     try{
         dispatch({ type : Types.GET_PRODUCT_LOADING});
 
-        let link =`http://localhost:8080/api/v1/products`;
+        let link =`${BASE_URL}/products`;
 
         // if(currentPage || price || ratings){
-        //   link = `http://localhost:8080/api/v1/products?page=${currentPage}&ratings[gte]=${ratings}&price[gte]=${price[0]}&price[lte]=${price[1]}`
+        //   link = `${BASE_URL}/products?page=${currentPage}&ratings[gte]=${ratings}&price[gte]=${price[0]}&price[lte]=${price[1]}`
         // }
         // ?
         if(category){
-          link = `http://localhost:8080/api/v1/products?page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`
+          link = `${BASE_URL}/products?page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`
         }
         const {data} = await axios.get(link);
         // console.log(data)
@@ -33,7 +34,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     try {
       dispatch({ type: Types.GET_PRODUCT_DETAILED_LOADING });
   
-      const { data } = await axios.get(`http://localhost:8080/api/v1/product/${id}`);
+      const { data } = await axios.get(`${BASE_URL}/product/${id}`);
   
       dispatch({
         type: Types.GET_PRODUCT_DETAILED_SUCCESS,
@@ -62,7 +63,7 @@ export const getProductDetails = (id) => async (dispatch) => {
       console.log("token :",token);
   
       const { data } = await axios.post(
-        `http://localhost:8080/api/v1/admin/product/new`,
+        `${BASE_URL}/admin/product/new`,
         productData,
         config
       );
@@ -91,7 +92,7 @@ export const getProductDetails = (id) => async (dispatch) => {
         },
       };
   
-      const { data } = await axios.get("http://localhost:8080/api/v1/admin/products",config);
+      const { data } = await axios.get(`${BASE_URL}/admin/products`,config);
   
       dispatch({
         type: Types.ADMIN_PRODUCT_SUCCESS,
@@ -119,7 +120,7 @@ export const deleteProduct = (id,token) => async (dispatch) => {
       },
     };
     
-    const { data } = await axios.delete(`http://localhost:8080/api/v1/admin/product/${id}`,config);
+    const { data } = await axios.delete(`${BASE_URL}/admin/product/${id}`,config);
 
     dispatch({
       type: Types.DELETE_PRODUCT_SUCCESS,
@@ -148,7 +149,7 @@ export const updateProduct = (id,productData,token) => async (dispatch) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:8080/api/v1/admin/product/${id}`,
+      `${BASE_URL}/admin/product/${id}`,
       productData,
       config
     );

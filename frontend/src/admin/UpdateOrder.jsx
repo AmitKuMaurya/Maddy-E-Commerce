@@ -51,7 +51,7 @@ const UpdateOrder = () => {
     }
 
     dispatch(getOrderDetails(id,token));
-  }, [dispatch, error, id, isUpdated, navigate,updateError]);
+  }, [dispatch, error, id, isUpdated, navigate,updateError,token]);
 
   return (
     <Fragment>

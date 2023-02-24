@@ -89,6 +89,7 @@ const EditProduct = () => {
         id,
         product,
         updateError,
+        navigate
     ]);
 
     const updateProductSubmitHandler = (e) => {

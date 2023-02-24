@@ -9,24 +9,17 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "./store";
 
-// import AlertTemplate from "react-alert-template-basic";
-// import { positions, transitions, Provider as AlertProvider } from "react-alert";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// const options = {
-//   timeout: 5000,
-//   positions: positions.TOP_RIGHT,
-//   transition: transitions.SCALE,
-// };
+
+export const BASE_URL = `https://e-commerce-api.up.railway.app/api`;
 
 root.render(
   <BrowserRouter>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        {/* <AlertProvider template={AlertTemplate} {...options}> */}
         <App />
-        {/* </AlertProvider> */}
       </PersistGate>
     </Provider>
   </BrowserRouter>

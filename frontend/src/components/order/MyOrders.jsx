@@ -88,7 +88,7 @@ const MyOrders = () => {
         }
 
         dispatch(myOrders(token));
-    }, [dispatch, error]);
+    }, [dispatch, error,token]);
 
     return (
         <Fragment>

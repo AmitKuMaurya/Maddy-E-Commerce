@@ -1,9 +1,9 @@
 import * as types from "./action.types";
 import axios from "axios";
-
+import { BASE_URL } from "../../index";
 export const addItemsToCart = (id,quantity) => async (dispatch, getState) => {
   const { data } = await axios.get(
-    `http://localhost:8080/api/v1/product/${id}`
+    `${BASE_URL}/product/${id}`
   );
 
   dispatch({

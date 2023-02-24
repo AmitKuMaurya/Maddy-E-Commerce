@@ -50,6 +50,7 @@ function LoginAndSignup() {
     myForm.set("password", password);
     myForm.set("avatar", avatar);
     dispatch(register(myForm));
+    navigate("/");
   };
 
   const registerDataChange = (e) => {
@@ -142,7 +143,7 @@ function LoginAndSignup() {
                 onSubmit={registerSubmit}
               >
                 <div className="signUpName">
-                  {/* <FaceIcon /> */}
+                  {/* <FaceOutlined /> */}
                   <input
                     type={"text"}
                     placeholder="Name"
@@ -153,7 +154,7 @@ function LoginAndSignup() {
                   />
                 </div>
                 <div className="signUpEmail">
-                  {/* <MailOutlineIcon /> */}
+                  {/* <MailOutline /> */}
                   <input
                     type={"email"}
                     placeholder="Email"

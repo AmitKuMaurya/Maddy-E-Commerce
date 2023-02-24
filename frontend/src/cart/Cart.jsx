@@ -10,7 +10,7 @@ import CartItemCard from "./CartItemCard";
 const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuth , user } = useSelector((state) => state.user);
+  const { isAuth  } = useSelector((state) => state.user);
   const { cartItems } = useSelector((state) => state.cart);
   // console.log(user._id)
   // console.log(cartItems[0].userId);

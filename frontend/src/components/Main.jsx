@@ -18,7 +18,7 @@ function Main() {
         //     return alert.error(error);
         //   }
         dispatch(getProducts());
-    }, [dispatch, error, alert]);
+    }, [dispatch, error]);
 
     // console.log(products);
 

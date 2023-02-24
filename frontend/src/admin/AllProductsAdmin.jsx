@@ -48,7 +48,7 @@ const token = JSON.parse(localStorage.getItem("token"));
     }
 
     dispatch(getAdminProduct(token));
-  }, [dispatch, error, navigate]);
+  }, [dispatch, error, navigate,deleteError,isDeleted,token]);
 
   const columns = [
     { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
