@@ -252,7 +252,13 @@ exports.upadteUserRole = asyncAwaitErr(async (req, res, next) => {
     role : req.body.role
   };
 
-  const user = await UserModel.findByIdAndUpdate(req.params.id, newUserData, {
+    let user = UserModel.findById(req.params.id);
+
+    if(!user){
+      return next(new ErrorHandler(`User does not exist with id : ${req.params.id}`,400))
+    }
+
+   user = await UserModel.findByIdAndUpdate(req.params.id, newUserData, {
     new: true,
     runValidators: true,
     useFindAndModify: false,
@@ -260,7 +266,6 @@ exports.upadteUserRole = asyncAwaitErr(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message : "User edited"
   });
 });
 

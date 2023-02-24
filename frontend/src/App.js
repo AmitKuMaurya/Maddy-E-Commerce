@@ -32,6 +32,7 @@ import EditProduct from "./admin/EditProduct";
 import AllOrders from "./admin/AllOrders";
 import UpdateOrder from "./admin/UpdateOrder";
 import AllUsers from "./admin/AllUsers";
+import UpdateUser from "./admin/UpdateUser";
 // import UpdateUserProfile from "./components/user/UpdateUserProfile";
 // import UpdateUserPassword from "./components/user/UpdateUserPassword";
 function App() {
@@ -202,6 +203,15 @@ function App() {
             element={
               <ProtectedRoute isAdmin={true} >
                 <AllUsers />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/user/:id"
+            element={
+              <ProtectedRoute isAdmin={true} >
+                <UpdateUser />
               </ProtectedRoute>
             }
           />

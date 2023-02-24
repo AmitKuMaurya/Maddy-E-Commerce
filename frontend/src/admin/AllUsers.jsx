@@ -15,7 +15,6 @@ const AllUsers = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
     const token = JSON.parse(localStorage.getItem("token"));
-//   const alert = useAlert();
 
   const { error, users } = useSelector((state) => state.allUsers);
 
@@ -26,7 +25,7 @@ const AllUsers = () => {
   } = useSelector((state) => state.profile);
 
   const deleteUserHandler = (id) => {
-    // dispatch(deleteUser(id));
+    dispatch(deleteUser(id,token));
   };
 
   useEffect(() => {

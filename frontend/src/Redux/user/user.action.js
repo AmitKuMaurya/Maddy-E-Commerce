@@ -16,7 +16,7 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config,
     );
-    saveData("token",data.token)
+    saveData("token",data.token);
     // saveData("user-Detail",data.user);
      dispatch({ type: types.USER_LOGIN_SUCCESS, payload: data.user});
   } catch (error) {

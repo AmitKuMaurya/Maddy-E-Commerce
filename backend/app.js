@@ -6,12 +6,13 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 // const {resolve} = require("path")
+// const path = require("path");
+// app.use(express.static(path.join(__dirname),"../frontend/build"));
 const { errMiddleware } = require("./middlewares/error");
 
 // config 
 dotenv.config({path : "./config/config.env"})
 
-// app.use(express.static("public"));
 // app.use(express.static(process.env.STATIC_DIR));
 
 // console.log(process.env.FRONTEND_URL)
@@ -20,6 +21,10 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(fileUpload());
 app.use(cors());
+
+app.get("/",(req,res)=>{
+  res.send(`This is Hosted website : ${process.env.FRONTEND_URL}`)
+})
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
     apiVersion: "2022-08-01",
@@ -35,10 +40,10 @@ app.get("/stripeapikey", (req, res) => {
 //   console.log(process.env.STRIPE_SECRET_KEY);
   
   app.post("/create-payment-intent", async (req, res) => {
-    // const {amount} = req.body; 
+    const {amount} = req.body; 
     try {
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: 50000,
+        amount: 500000,
         currency: "inr",
         automatic_payment_methods: {
           enabled: true,
@@ -68,8 +73,10 @@ app.use("/api/v1",userRouter);
 app.use("/api/v1",orderRouter);
 // app.use("/api/v1",paymentRouter);
 
-// middleware for error handling.
 
+// app.use(express.static(path.join(__dirname),"../frontend/build"));
+
+// middleware for error handling.
 app.use(errMiddleware);
 
 module.exports = app
