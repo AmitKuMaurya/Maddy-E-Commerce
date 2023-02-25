@@ -30,18 +30,16 @@ const UserResetPassword = () => {
     myForm.set("confirmPassword", confirmPassword);
 
     dispatch(resetPassword(params.token, myForm));
+    if (success) {
+      alert("Password Updated Successfully");
+      navigate("/login");
+    }
   };
 
   useEffect(() => {
     if (error) {
       alert(error);
     //   dispatch(clearErrors());
-    }
-
-    if (success) {
-      alert("Password Updated Successfully");
-
-      navigate("/login");
     }
   }, [dispatch, error, navigate, success]);
 
