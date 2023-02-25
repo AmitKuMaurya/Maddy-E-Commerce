@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
+/* font-family: 'Handlee', cursive; */
+
+*{
+  font-family: 'Handlee', cursive;
+}
+
 .ProductDetails {
     background-color: rgb(255, 255, 255);
     width: 100vw;
@@ -6,7 +13,6 @@
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-    border: 1px solid red;
 }
 
 .ProductDetails > div {
@@ -17,8 +23,6 @@
     /* align-items: center; */
     padding: 2vmax;
     box-sizing: border-box;
-    border: 1px solid red;
-    /* border: 1px solid white; */
   }
 
   .ProductDetails > div > img{
@@ -38,9 +42,8 @@
   
   .detailsBlock-1 > h2 {
     color: rgb(54, 54, 54);
-    font: 600 1.6vmax "Roboto";
+    font: 600 1.6vmax "Handlee";
   }
-  
   .detailsBlock-1 > p {
     color: rgba(54, 54, 54, 0.582);
     font: 200 0.6vmax cursive;
@@ -93,7 +96,7 @@
     width: 1vmax;
     text-align: center;
     outline: none;
-    /* font: 400 0.8vmax "Roboto"; */
+    /* font: 400 0.8vmax "Handlee"; */
     color: rgba(83, 221, 19, 0.74);
   }
   
@@ -103,7 +106,7 @@
     color: white;
     transition: all 0.5s;
     background-color: lightgreen;
-    font: 500 0.7vmax "Roboto";
+    font: 500 0.7vmax "Handlee";
     border-radius: 20px;
     padding: 0.5vmax 2vmax;
     margin: 1vmax;
@@ -119,7 +122,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.205);
     padding: 1vmax 0;
     color: rgba(0, 0, 0, 0.651);
-    font: 400 1vmax "Roboto";
+    font: 400 1vmax "Handlee";
     margin: 1vmax 0;
   }
   
@@ -136,7 +139,7 @@
   .submitReview {
     border: none;
     background-color: lightgreen;
-    font: 500 0.7vmax "Roboto";
+    font: 500 0.7vmax "Handlee";
     border-radius: 20px;
     padding: 0.6vmax 2vmax;
     margin: 1vmax 0;
@@ -159,12 +162,12 @@
     margin: 1vmax 0;
     outline: none;
     padding: 1rem;
-    font: 300 1rem "Roboto";
+    font: 300 1rem "Handlee";
   }
   
   .reviewsHeading {
     color: #000000be;
-    font: 500 1.4vmax "Roboto";
+    font: 500 1.4vmax "Handlee";
     text-align: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.226);
     padding: 1vmax;
@@ -195,7 +198,7 @@
   }
   .reviewCard > p {
     color: rgba(0, 0, 0, 0.836);
-    font: 600 0.9vmax "Roboto";
+    font: 600 0.9vmax "Handlee";
   }
   .reviewCardComment {
     color: rgba(0, 0, 0, 0.445);
@@ -255,11 +258,11 @@
     .detailsBlock-3-1-1 > input {
       padding: 1.5vmax;
       width: 3vmax;
-      font: 400 1.8vmax "Roboto";
+      font: 400 1.8vmax "Handlee";
     }
   
     .detailsBlock-3-1 > button:last-child {
-      font: 500 1.7vmax "Roboto";
+      font: 500 1.7vmax "Handlee";
       padding: 1.5vmax;
       width: 20vmax;
       margin: 3vmax 0;
@@ -268,7 +271,7 @@
     .detailsBlock-3 > p {
       padding: 2.5vmax 0;
       text-align: center;
-      font: 400 2vmax "Roboto";
+      font: 400 2vmax "Handlee";
     }
   
     .detailsBlock-4 {
@@ -280,14 +283,14 @@
     }
   
     .submitReview {
-      font: 500 1.7vmax "Roboto";
+      font: 500 1.7vmax "Handlee";
       padding: 1.5vmax;
       width: 20vmax;
       margin: 3vmax 0;
     }
   
     .reviewCard > p {
-      font: 600 3vw "Roboto";
+      font: 600 3vw "Handlee";
     }
     .reviewCardComment {
       font: 300 5vw cursive;
