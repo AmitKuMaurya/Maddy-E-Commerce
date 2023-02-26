@@ -30,8 +30,8 @@ import AllOrders from "./admin/AllOrders";
 import UpdateOrder from "./admin/UpdateOrder";
 import AllUsers from "./admin/AllUsers";
 import UpdateUser from "./admin/UpdateUser";
-// import UpdateUserProfile from "./components/user/UpdateUserProfile";
-// import UpdateUserPassword from "./components/user/UpdateUserPassword";
+import UpdateUserProfile from "./components/user/UpdateUserProfile";
+import UpdateUserPassword from "./components/user/UpdateUserPassword";
 function App() {
   const { isAuth, user } = useSelector((state) => state.user);
   return (
@@ -201,23 +201,23 @@ function App() {
           }
         />
 
-        {/* <Route
+        <Route
           path="/me/update"
           element={
             <ProtectedRoute>
               <UpdateUserProfile />
               </ProtectedRoute>
           }
-        /> */}
+        />
 
-        {/* <Route
+        <Route
           path="/password/update"
           element={
             <ProtectedRoute>
             <UpdateUserPassword />
             </ProtectedRoute>
           }
-        /> */}
+        />
 
         {/* <Route path='/products/:keyword' element={<AllProduct/>} /> */}
         {/* <Route path='/search' element={<Search/>} /> */}

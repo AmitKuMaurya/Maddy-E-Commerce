@@ -60,45 +60,54 @@ export const logout = () => async (dispatch) => {
 };
 
 
-// export const updateProfile = (userData) => async (dispatch) => {
-//   try {
-//     dispatch({ type: types.UPDATE_PROFILE_REQUEST });
+export const updateProfile = (userData,token) => async (dispatch) => {
+  try {
+    dispatch({ type: types.UPDATE_PROFILE_REQUEST });
 
-//     const config = { headers: { "Content-Type": "multipart/form-data" } };
-//     console.log(userData);
-//     const { data } = await axios.put(`${BASE_URL}/me/update`, userData, config);
+    const config = { headers: {
+       "Content-Type": "multipart/form-data" ,
+       'authorization': `Bearer ${token}`
+   } };
 
-//      dispatch({ type: types.UPDATE_PROFILE_SUCCESS, payload: data.success });
-//      console.log(data);
-//      console.log(data.success);
-//   } catch (error) {
-//     dispatch({
-//       type: types.UPDATE_PROFILE_FAIL,
-//       payload: error.response.data.message,
-//     });
-//   }
-// };
+    console.log(userData);
+    const { data } = await axios.put(`${BASE_URL}/me/update`, userData, config);
 
-// export const updatePassword = (passwords) => async (dispatch) => {
-//   try {
-//     dispatch({ type: types.UPDATE_PASSWORD_REQUEST });
+     dispatch({ type: types.UPDATE_PROFILE_SUCCESS, payload: data.success });
+     console.log(data);
+     console.log(data.success);
+    } catch (error) {
+      dispatch({
+        type: types.UPDATE_PROFILE_FAIL,
+        payload: error.response.data.message,
+      });
+      console.log(error);
+  }
+};
 
-//     const config = { headers: { "Content-Type": "application/json" } };
+export const updatePassword = (passwords,token) => async (dispatch) => {
+  try {
+    dispatch({ type: types.UPDATE_PASSWORD_REQUEST });
 
-//     const { data } = await axios.put(
-//       `${BASE_URL}/password/update`,
-//       passwords,
-//       config
-//     );
+    const config = { headers: {
+       "Content-Type": "application/json",
+       'authorization': `Bearer ${token}`
+       } };
 
-//     dispatch({ type: types.UPDATE_PASSWORD_SUCCESS, payload: data.success });
-//   } catch (error) {
-//     dispatch({
-//       type: types.UPDATE_PASSWORD_FAIL,
-//       payload: error.response.data.message,
-//     });
-//   }
-// };
+    const { data } = await axios.put(
+      `${BASE_URL}/password/update`,
+      passwords,
+      config
+    );
+
+    dispatch({ type: types.UPDATE_PASSWORD_SUCCESS, payload: data.success });
+  } catch (error) {
+    dispatch({
+      type: types.UPDATE_PASSWORD_FAIL,
+      payload: error.response.data.message,
+    });
+    console.log(error);
+  }
+};
 
 
 export const forgotPassword = (email) => async (dispatch) => {
