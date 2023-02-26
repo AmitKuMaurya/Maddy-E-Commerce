@@ -1,6 +1,5 @@
 // import { loadData, saveData } from "../../components/utility/SetCookie";
 import * as types from "./user.action.types";
-// const token = loadData("token");
 
 export const userReducer = (state = { user: {} }, action) => {
   switch (action.type) {

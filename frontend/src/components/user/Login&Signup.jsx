@@ -16,7 +16,7 @@ function LoginAndSignup() {
   const navigate = useNavigate();
   const location = useLocation();
   const { error, loading, isAuth } = useSelector((state) => state.user);
-  // console.log(isAuth)
+  console.log(error);
 
   const loginTab = useRef(null);
   const registerTab = useRef(null);
