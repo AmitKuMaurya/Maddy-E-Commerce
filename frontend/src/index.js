@@ -13,7 +13,7 @@ import store, { persistor } from "./store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 
-export const BASE_URL = `https://e-commerce-api.up.railway.app/api`;
+export const BASE_URL = `https://ecommerce-api-4mmb.onrender.com/api/`;
 
 root.render(
   <BrowserRouter>

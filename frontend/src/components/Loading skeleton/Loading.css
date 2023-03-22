@@ -1,4 +1,6 @@
-.loading {
+
+
+/* #preloader {
     width: 100vw;
     height: 100vh;
     background-color: white;
@@ -7,18 +9,17 @@
     max-width: 100%;
   }
   
-  .loading > div {
-    width: 10vmax;
-    height: 10vmax;
-    border-bottom: 5px solid rgb(231, 133, 36);
-  
-    border-radius: 50%;
-  
-    animation: loadingRotate 800ms linear infinite;
-  }
-  
-  @keyframes loadingRotate {
-    to {
-      transform: rotateZ(-360deg);
-    }
-  }
+  */
+
+
+  #preloader {
+    background: url(./four-color-gif.gif);
+    background-repeat: no-repeat;
+    background-size: cover contain;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    place-items: center;
+    position: fixed;
+    z-index: 100;
+}
